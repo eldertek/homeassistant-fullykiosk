@@ -6,9 +6,8 @@ from homeassistant.components import media_source
 from homeassistant.components.media_player import (
     ATTR_MEDIA_VOLUME_LEVEL,
     SERVICE_VOLUME_SET,
-    SUPPORT_PLAY_MEDIA,
-    SUPPORT_VOLUME_SET,
     MediaPlayerEntity,
+    MediaPlayerEntityFeature,
 )
 from homeassistant.components.media_player.browse_media import (
     async_process_play_media_url,
@@ -37,7 +36,9 @@ from .const import (
     SERVICE_TO_FOREGROUND,
 )
 
-SUPPORT_FULLYKIOSK = SUPPORT_PLAY_MEDIA | SUPPORT_VOLUME_SET
+SUPPORT_FULLYKIOSK = (
+    MediaPlayerEntityFeature.PLAY_MEDIA | MediaPlayerEntityFeature.VOLUME_SET
+)
 
 
 _LOGGER = logging.getLogger(__name__)

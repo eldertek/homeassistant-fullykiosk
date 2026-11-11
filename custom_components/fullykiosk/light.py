@@ -3,7 +3,7 @@ import logging
 
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
-    SUPPORT_BRIGHTNESS,
+    ColorMode,
     LightEntity,
 )
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -47,9 +47,19 @@ class FullyLight(CoordinatorEntity, LightEntity):
         return self.coordinator.data["screenBrightness"]
 
     @property
+    def color_mode(self):
+        """Return the color mode of the light."""
+        return ColorMode.BRIGHTNESS
+
+    @property
+    def supported_color_modes(self):
+        """Flag supported color modes."""
+        return {ColorMode.BRIGHTNESS}
+
+    @property
     def supported_features(self):
         """Return the supported features."""
-        return SUPPORT_BRIGHTNESS
+        return 0
 
     @property
     def device_info(self):
